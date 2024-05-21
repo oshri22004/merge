@@ -4,12 +4,14 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/google/go-github/v50/github"
 )
 
-const baseBranch = "main"
+const (
+	baseBranch = "main"
+	owner      = "DigitalIDF"
+)
 
 func OpenPullRequest(branch, repoName string) *github.PullRequest {
 	ctx := context.Background()
@@ -23,7 +25,7 @@ func OpenPullRequest(branch, repoName string) *github.PullRequest {
 		MaintainerCanModify: github.Bool(true),
 	}
 
-	pr, _, err := client.PullRequests.Create(ctx, os.Getenv("GITHUB_USERNAME"), repoName, newPR)
+	pr, _, err := client.PullRequests.Create(ctx, owner, repoName, newPR)
 	if err != nil {
 		log.Fatalf("Failed to create pull request: %v", err)
 	}
@@ -36,7 +38,7 @@ func MergePullRequest(prNumber int, repoName string) {
 	ctx := context.Background()
 	client := NewClient(ctx)
 
-	_, _, err := client.PullRequests.Merge(ctx, os.Getenv("GITHUB_USERNAME"), repoName, prNumber, "Automated merge", &github.PullRequestOptions{})
+	_, _, err := client.PullRequests.Merge(ctx, owner, repoName, prNumber, "Automated merge", &github.PullRequestOptions{})
 	if err != nil {
 		log.Fatalf("Failed to merge pull request: %v", err)
 	}

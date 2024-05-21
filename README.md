@@ -27,5 +27,5 @@ automate the next steps:
     sudo chmod +x /usr/local/bin/merge
 
     # Verify the installation
-    merge --version
+    merge
 ```
