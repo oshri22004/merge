@@ -8,6 +8,8 @@ automate the next steps:
 5. wait for required workflows to run
 6. git merge
 
+![Alt Text](docs/merge.gif)
+
 
 ## Installation
 
