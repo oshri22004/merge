@@ -1,23 +1,46 @@
----
-name: build and tar code
+name: Build and Release
+
 on:
   push:
     branches:
       - main
     paths:
-      - cmd/**
-      - internal/**
+      - 'cmd/**'
+      - 'internal/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Checkout
-        uses: actions/checkout@v4
-    
-      - name: go build
-        run: go build -o ./build/package/merge .
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22.0' # Specify the Go version you are using
 
-      - name: tar
-        run: |
-          tar -czvf ./dist/merge.tar.gz ./build/package/merge
+      - name: Build the binary
+        run: GOOS=linux GOARCH=amd64 go build -o build/package/merge .
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: "Release ${{ github.run_number }}"
+          draft: false
+          prerelease: false
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/package/merge
+          asset_name: merge
+          asset_content_type: application/octet-stream

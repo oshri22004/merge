@@ -17,7 +17,7 @@ automate the next steps:
 2. Extract the tarball and move the binary to `/usr/local/bin`:
 
    ```sh
-   wget https://github.com/yourusername/yourappname/releases/download/v1.0.0/yourappname.tar.gz
-   tar -xzvf yourappname.tar.gz
-   sudo mv yourappname /usr/local/bin/
+   wget https://github.com/oshri22004/merge/blob/dev/dist/merge.tar.gz
+   tar -xzvf merge.tar.gz
+   sudo mv merge /usr/local/bin/
    ```
