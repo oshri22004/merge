@@ -10,7 +10,7 @@ automate the next steps:
 
 ## Usage
 
-merge run "<commit message>"
+merge run "/<commit message/>"
 
 ![Alt Text](docs/merge.gif)
 
