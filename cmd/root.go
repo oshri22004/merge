@@ -1,6 +1,7 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 NAME HERE oshripar@gmail.com
 */
+
 package cmd
 
 import (
