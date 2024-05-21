@@ -16,8 +16,16 @@ automate the next steps:
 1. Download the latest release from the [releases page](https://github.com/yourusername/yourappname/releases).
 2. Extract the tarball and move the binary to `/usr/local/bin`:
 
-   ```sh
-   wget https://github.com/oshri22004/merge/blob/dev/dist/merge.tar.gz
-   tar -xzvf merge.tar.gz
-   sudo mv merge /usr/local/bin/
-   ```
+```sh
+    # Download the latest release of the binary
+    curl -OL https://github.com/oshri22004/merge/releases/latest/download/merge
+
+    # Move the binary to /usr/local/bin
+    sudo mv merge /usr/local/bin/
+
+    # Make the binary executable
+    sudo chmod +x /usr/local/bin/merge
+
+    # Verify the installation
+    merge --version
+```
