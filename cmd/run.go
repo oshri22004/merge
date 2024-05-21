@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"log"
+	"time"
 
 	"github.com/oshri22004/merge/internal/git"
 	"github.com/oshri22004/merge/internal/github"
@@ -34,7 +35,7 @@ var runCmd = &cobra.Command{
 		git.Commit(commitMessage)
 		git.Push(branch)
 		pr := github.OpenPullRequest(branch, repoName)
-		github.WaitForWorkflows(pr.GetNumber(), repoName)
+		time.Sleep(15 * time.Second)
 		github.MergePullRequest(pr.GetNumber(), repoName)
 	},
 }
