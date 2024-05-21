@@ -35,7 +35,7 @@ var runCmd = &cobra.Command{
 		git.Commit(commitMessage)
 		git.Push(branch)
 		pr := github.OpenPullRequest(branch, repoName)
-		time.Sleep(15 * time.Second)
+		time.Sleep(30 * time.Second)
 		github.MergePullRequest(pr.GetNumber(), repoName)
 	},
 }
