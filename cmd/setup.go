@@ -29,13 +29,9 @@ func init() {
 }
 
 func ensureSetup() {
-	if os.Getenv("GITHUB_USERNAME") == "" || os.Getenv("MERGE_PAT") == "" {
+	if os.Getenv("MERGE_PAT") == "" {
 		fmt.Println("Initial setup required.")
 		reader := bufio.NewReader(os.Stdin)
-
-		fmt.Print("Enter your GitHub username: ")
-		username, _ := reader.ReadString('\n')
-		username = strings.TrimSpace(username)
 
 		fmt.Print("Enter your GitHub personal access token: ")
 		token, _ := reader.ReadString('\n')
@@ -49,7 +45,7 @@ func ensureSetup() {
 		}
 		defer zshrcFile.Close()
 
-		_, err = zshrcFile.WriteString(fmt.Sprintf("\nexport GITHUB_USERNAME=%s\nexport MERGE_PAT=%s\n", username, token))
+		_, err = zshrcFile.WriteString(fmt.Sprintf("\nexport MERGE_PAT=%s\n", token))
 		if err != nil {
 			log.Fatalf("Failed to write to ~/.zshrc: %v", err)
 		}

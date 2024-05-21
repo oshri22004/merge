@@ -8,15 +8,16 @@ automate the next steps:
 5. wait for required workflows to run
 6. git merge
 
+## Usage
+
+merge run "<commit message>"
+
 ![Alt Text](docs/merge.gif)
 
 
 ## Installation
 
 ### Linux/Mac
-
-1. Download the latest release from the [releases page](https://github.com/yourusername/yourappname/releases).
-2. Extract the tarball and move the binary to `/usr/local/bin`:
 
 ```sh
     # Download the latest release of the binary
@@ -28,6 +29,6 @@ automate the next steps:
     # Make the binary executable
     sudo chmod +x /usr/local/bin/merge
 
-    # Verify the installation
-    merge
+    # setup
+    merge setup
 ```
