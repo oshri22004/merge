@@ -1,0 +1,23 @@
+---
+name: build and tar code
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - cmd/**
+      - internal/**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+    
+      - name: go build
+        run: go build -o ./build/package/merge .
+
+      - name: tar
+        run: |
+          tar -czvf ./dist/merge.tar.gz ./build/package/merge
