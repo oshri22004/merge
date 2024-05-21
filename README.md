@@ -18,7 +18,7 @@ automate the next steps:
 
 ```sh
     # Download the latest release of the binary
-    curl -OL https://github.com/oshri22004/merge/releases/latest/download/merge
+    curl -L https://api.github.com/repos/oshri22004/merge/releases/latest | jq -r '.assets[].browser_download_url' | xargs wget
 
     # Move the binary to /usr/local/bin
     sudo mv merge /usr/local/bin/
